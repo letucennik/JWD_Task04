@@ -12,6 +12,6 @@ public class Server {
         ServerController serverController = new ServerController(port);
         serverController.receiveRequestFromClient();
         serverController.sendAnswerToClient();
-
+    
     }
 }

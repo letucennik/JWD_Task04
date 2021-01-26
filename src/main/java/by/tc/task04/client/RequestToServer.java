@@ -9,20 +9,31 @@ public class RequestToServer implements Serializable {
     int numberOfOperation;
     private String filePath;
     private int wordLength;
-    private Letter letter;
+    private Letter firstLetter;
+    private Letter secondLetter;
     private String filePathOfWordList;
+
 
     public RequestToServer() {
         filePath = "";
         numberOfOperation=0;
         wordLength=0;
-        letter=new Letter();
+        firstLetter=new Letter();
+        secondLetter=new Letter();
         filePathOfWordList="";
     }
 
     public RequestToServer(String filePath, int numberOfOperation) {
         this.filePath = filePath;
         this.numberOfOperation = numberOfOperation;
+    }
+
+    public Letter getSecondLetter() {
+        return secondLetter;
+    }
+
+    public void setSecondLetter(Letter secondLetter) {
+        this.secondLetter = secondLetter;
     }
 
     public String getFilePathOfWordList() {
@@ -33,12 +44,12 @@ public class RequestToServer implements Serializable {
         this.filePathOfWordList = filePathOfWordList;
     }
 
-    public void setLetter(Letter letter) {
-        this.letter = letter;
+    public void setFirstLetter(Letter letter) {
+        this.firstLetter = letter;
     }
 
-    public Letter getLetter() {
-        return letter;
+    public Letter getFirstLetter() {
+        return firstLetter;
     }
 
     public void setWordLength(int wordLength){

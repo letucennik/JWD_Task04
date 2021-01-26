@@ -37,7 +37,7 @@ public class Task10 implements IndividualTask {
                         .stream().filter(x -> x.getContent().toLowerCase().equals(givenWord.getContent().trim().toLowerCase())).count();
                 resultString.append(numberOfEntriesOfGivenWord+"; ");
             }
-            resultString.append("\n"+"!");
+            resultString.append("\n");
         }
         resultString.append("\n");
         Collections.sort(givenWords, new Comparator<TextPart>() {

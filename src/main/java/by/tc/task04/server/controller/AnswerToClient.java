@@ -71,7 +71,7 @@ public class AnswerToClient {
                 return userTask.performTask();
 
             case 9:
-                userTask=new Task09(words,clientRequest.getLetter());
+                userTask=new Task09(words,clientRequest.getFirstLetter());
                 return userTask.performTask();
 
             case 10:
@@ -79,7 +79,8 @@ public class AnswerToClient {
                 return userTask.performTask();
 
             case 11:
-                return "";
+                userTask=new Task11(sentencesAndBlocks,clientRequest.getFirstLetter(),clientRequest.getSecondLetter());
+                return userTask.performTask();
 
             case 12:
                 return "";

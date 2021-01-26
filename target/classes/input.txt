@@ -3,7 +3,7 @@ of class loading, this is the easiest method to create a singleton class but it
 has a drawback that instance is created even though client application might
 not be using it.
 Here is the implementation of static initialization singleton class.
-What do you think of it? Is this information new to you?
+What do you think of it? Is this information new to you? Eager initialisation is the coolest.
 ```java
 package com.journaldev.singleton;
 public class EagerInitializedSingleton {
