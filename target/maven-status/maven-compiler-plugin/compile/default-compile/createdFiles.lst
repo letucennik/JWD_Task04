@@ -1,0 +1,11 @@
+by\tc\task04\entity\TextPart.class
+by\tc\task04\client\controller\ClientController.class
+by\tc\task04\regex\Regex.class
+by\tc\task04\entity\impl\Text.class
+by\tc\task04\entity\impl\Sentence.class
+by\tc\task04\server\Server.class
+by\tc\task04\server\controller\ServerController.class
+by\tc\task04\client\Client.class
+by\tc\task04\client\RequestToServer.class
+by\tc\task04\entity\impl\CodeBlock.class
+by\tc\task04\entity\impl\Word.class

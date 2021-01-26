@@ -1,0 +1,4 @@
+eager
+static 
+also
+the
