@@ -8,10 +8,10 @@ public class Client {
     public static final int port = 8001;
 
     public static void main(String[] args) {
-        RequestToServer request = new RequestToServer("src/main/resources/input.txt",11);
-       // request.setWordLength(5);
-         request.setFirstLetter(new Letter('a'));
-         request.setSecondLetter(new Letter('s'));
+        RequestToServer request = new RequestToServer("src/main/resources/input.txt",12);
+        request.setWordLength(5);
+         //request.setFirstLetter(new Letter('a'));
+         //request.setSecondLetter(new Letter('s'));
         //request.setFilePathOfWordList("src/main/resources/wordlist.txt");
         ClientController clientController = new ClientController(request, port);
         clientController.sendRequestToServer();

@@ -83,7 +83,8 @@ public class AnswerToClient {
                 return userTask.performTask();
 
             case 12:
-                return "";
+                userTask=new Task12(sentencesAndBlocks,clientRequest.getWordLength());
+                return userTask.performTask();
 
             case 13:
                 return "";

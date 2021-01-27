@@ -37,9 +37,7 @@ public class Task11 implements IndividualTask {
                 } else {
                     modifiedSentence.append(sentenceOrBlock.getContent());
                 }
-/
                 resultString.append(modifiedSentence);
-//            
             } else {
                 resultString.append(sentenceOrBlock.getContent());
             }
