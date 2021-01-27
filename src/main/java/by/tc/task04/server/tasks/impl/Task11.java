@@ -6,6 +6,7 @@ import by.tc.task04.entity.impl.Sentence;
 import by.tc.task04.server.tasks.IndividualTask;
 
 import java.util.List;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Task11 implements IndividualTask {
@@ -13,25 +14,32 @@ public class Task11 implements IndividualTask {
     private Letter firstLetter;
     private Letter secondLetter;
     private String SUBSTRING_BETWEEN_TWO_SYMBOLS;
-    public Task11(List<TextPart> sentencesAndBlocks,Letter firstLetter,Letter secondLetter){
-        this.sentencesAndBlocks=sentencesAndBlocks;
-        this.firstLetter=firstLetter;
-        this.secondLetter=secondLetter;
-        SUBSTRING_BETWEEN_TWO_SYMBOLS=firstLetter.getContent()+".*"+secondLetter.getContent();
+
+    public Task11(List<TextPart> sentencesAndBlocks, Letter firstLetter, Letter secondLetter) {
+        this.sentencesAndBlocks = sentencesAndBlocks;
+        this.firstLetter = firstLetter;
+        this.secondLetter = secondLetter;
+        SUBSTRING_BETWEEN_TWO_SYMBOLS = firstLetter.getContent() + ".+" + secondLetter.getContent();
     }
+
     @Override
     public String performTask() {
-        StringBuilder resultString=new StringBuilder();
-        for(TextPart sentenceOrBlock:sentencesAndBlocks){
-            if(sentenceOrBlock instanceof Sentence){
-                int start=sentenceOrBlock.getContent().indexOf(firstLetter.getLetter());
-                int end=sentenceOrBlock.getContent().indexOf(secondLetter.getLetter())+1;
-                if(start>1&&end>1&&start<end){
-                    resultString.append(new StringBuilder(sentenceOrBlock.getContent()).delete(start,end));
+        StringBuilder resultString = new StringBuilder();
+        StringBuilder modifiedSentence;
+        Pattern neededSubstringPattern = Pattern.compile(SUBSTRING_BETWEEN_TWO_SYMBOLS);
+        for (TextPart sentenceOrBlock : sentencesAndBlocks) {
+            if (sentenceOrBlock instanceof Sentence) {
+                modifiedSentence = new StringBuilder();
+                Matcher neededSubstringMatcher = neededSubstringPattern.matcher(sentenceOrBlock.getContent());
+                int count = 0;
+                if (neededSubstringMatcher.find()) {
+                    modifiedSentence.append(sentenceOrBlock.getContent()).delete(neededSubstringMatcher.start(), neededSubstringMatcher.end());
+                } else {
+                    modifiedSentence.append(sentenceOrBlock.getContent());
                 }
-                else{
-                    resultString.append(sentenceOrBlock.getContent());
-                }
+/
+                resultString.append(modifiedSentence);
+//            
             } else {
                 resultString.append(sentenceOrBlock.getContent());
             }
