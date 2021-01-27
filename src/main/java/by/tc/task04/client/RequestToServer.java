@@ -12,6 +12,7 @@ public class RequestToServer implements Serializable {
     private Letter firstLetter;
     private Letter secondLetter;
     private String filePathOfWordList;
+    private String substring;
 
 
     public RequestToServer() {
@@ -34,6 +35,14 @@ public class RequestToServer implements Serializable {
 
     public void setSecondLetter(Letter secondLetter) {
         this.secondLetter = secondLetter;
+    }
+
+    public void setSubstring(String substring) {
+        this.substring = substring;
+    }
+
+    public String getSubstring() {
+        return substring;
     }
 
     public String getFilePathOfWordList() {

@@ -31,7 +31,7 @@ public class ServerController {
        // manageRegexFromProperties();
     }
 
-    public void sendAnswerToClient() throws IOException {
+    public void sendAnswerToClient() throws IOException, PropertiesParameterException {
         serverAnswer = new AnswerToClient(clientRequest);
         serverAnswer.preparedInfoForClient();
         serverOutputStream.writeObject(serverAnswer.preparedInfoForClient());

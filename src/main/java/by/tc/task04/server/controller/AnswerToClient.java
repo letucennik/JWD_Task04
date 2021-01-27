@@ -3,6 +3,7 @@ package by.tc.task04.server.controller;
 import by.tc.task04.client.RequestToServer;
 import by.tc.task04.entity.TextPart;
 import by.tc.task04.entity.impl.Text;
+import by.tc.task04.server.exception.PropertiesParameterException;
 import by.tc.task04.server.parser.TextParser;
 import by.tc.task04.server.tasks.IndividualTask;
 import by.tc.task04.server.tasks.impl.*;
@@ -33,7 +34,7 @@ public class AnswerToClient {
         }
     }
 
-    public String preparedInfoForClient() {
+    public String preparedInfoForClient() throws PropertiesParameterException {
         IndividualTask userTask;
         TextParser parser = new TextParser(contentOfProgrammingFile);
         parser.parseToSentencesAndCodeBlocks();
@@ -99,12 +100,12 @@ public class AnswerToClient {
                 return userTask.performTask();
 
             case 16:
-                break;
+                userTask=new Task16(sentencesAndBlocks,clientRequest.getSubstring(),clientRequest.getWordLength());
+                return userTask.performTask();
             default:
-                return "";
+                throw new PropertiesParameterException("Invalid task number");
 
         }
-        return "";
     }
 
 }
