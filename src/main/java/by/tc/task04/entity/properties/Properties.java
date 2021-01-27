@@ -1,4 +1,4 @@
-package by.tc.task04.entity;
+package by.tc.task04.entity.properties;
 
 import by.tc.task04.entity.impl.Letter;
 
