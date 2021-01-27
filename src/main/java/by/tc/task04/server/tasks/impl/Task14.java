@@ -17,8 +17,10 @@ public class Task14 implements IndividualTask {
             for(int j=0;j<textContent.length();j++){
                 int flag=1;
                 for (int k = 0; k < (j - i + 1) / 2; k++){
-                    if(textContent.charAt(i+k)!=textContent.charAt(j-k))
-                        flag=0;
+                    if (textContent.charAt(i + k) != textContent.charAt(j - k)) {
+                        flag = 0;
+                        break;
+                    }
                 }
                 if (flag!=0 && (j - i + 1) > maxLength) {
                     start = i;

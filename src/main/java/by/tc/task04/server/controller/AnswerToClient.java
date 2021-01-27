@@ -95,7 +95,8 @@ public class AnswerToClient {
                 return userTask.performTask();
 
             case 15:
-                return "";
+                userTask=new Task15(sentencesAndBlocks);
+                return userTask.performTask();
 
             case 16:
                 break;
