@@ -3,23 +3,24 @@ package by.tc.task04.server.tasks.impl;
 import by.tc.task04.entity.TextPart;
 import by.tc.task04.entity.impl.Letter;
 import by.tc.task04.entity.impl.Sentence;
+import by.tc.task04.entity.impl.Text;
 import by.tc.task04.server.parser.TextParser;
 import by.tc.task04.server.tasks.IndividualTask;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Task12 implements IndividualTask {
-    private List<TextPart> sentencesAndBlocks;
-    private int wordLength;
+public class Task12 extends IndividualTask {
+    private final int wordLength;
 
-    public Task12(List<TextPart> sentencesAndBlocks, int wordLength) {
-        this.sentencesAndBlocks = sentencesAndBlocks;
+    public Task12(Text text, int wordLength) {
+        super(text);
         this.wordLength = wordLength;
     }
 
     @Override
     public String performTask() {
+        List<TextPart> sentencesAndBlocks = TextParser.parseToSentencesAndCodeBlocks(getText());
         StringBuilder resultString = new StringBuilder();
         for (TextPart sentenceOrBlock : sentencesAndBlocks) {
             if (sentenceOrBlock instanceof Sentence) {
@@ -28,7 +29,7 @@ public class Task12 implements IndividualTask {
                 wordsOfSentence.removeAll(wordsToRemove);
                 resultString.append(Sentence.createSentenceFromListOfWords(wordsOfSentence));
             } else {
-                resultString.append("\n" + sentenceOrBlock.getContent() + "\n");
+                resultString.append("\n").append(sentenceOrBlock.getContent()).append("\n");
             }
         }
 

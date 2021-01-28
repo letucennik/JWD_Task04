@@ -10,15 +10,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Task04 implements IndividualTask {
-    private List<TextPart> sentences;
-    private int wordLength;
-    public Task04(List<TextPart> sentences,int wordLength){
-        this.sentences=sentences;
+public class Task04 extends IndividualTask {
+    private final int wordLength;
+    public Task04(Text text, int wordLength) {
+        super(text);
         this.wordLength=wordLength;
     }
     @Override
     public String performTask() {
+        List<TextPart> sentences = TextParser.parseToSentences(super.getText());
         StringBuilder wordsOfGivenLength=new StringBuilder();
         Set<TextPart> properWords=new HashSet<>();
         for(TextPart sentence:sentences){
@@ -32,7 +32,7 @@ public class Task04 implements IndividualTask {
             }
         }
         for(TextPart properWord:properWords){
-            wordsOfGivenLength.append(properWord.getContent()+"\n");
+            wordsOfGivenLength.append(properWord.getContent()).append("\n");
         }
 
         return wordsOfGivenLength.toString();

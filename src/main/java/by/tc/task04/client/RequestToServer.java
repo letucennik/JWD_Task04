@@ -1,27 +1,21 @@
 package by.tc.task04.client;
 
 import by.tc.task04.entity.impl.Letter;
+import by.tc.task04.entity.parameters.UserParameters;
 
 import java.io.Serializable;
 
 public class RequestToServer implements Serializable {
     private static final long serialVersionUID = 1L;
-    int numberOfOperation;
+    private int numberOfOperation;
     private String filePath;
-    private int wordLength;
-    private Letter firstLetter;
-    private Letter secondLetter;
-    private String filePathOfWordList;
-    private String substring;
+    private UserParameters parameters;
+
 
 
     public RequestToServer() {
         filePath = "";
         numberOfOperation=0;
-        wordLength=0;
-        firstLetter=new Letter();
-        secondLetter=new Letter();
-        filePathOfWordList="";
     }
 
     public RequestToServer(String filePath, int numberOfOperation) {
@@ -29,44 +23,12 @@ public class RequestToServer implements Serializable {
         this.numberOfOperation = numberOfOperation;
     }
 
-    public Letter getSecondLetter() {
-        return secondLetter;
+    public UserParameters getParameters() {
+        return parameters;
     }
 
-    public void setSecondLetter(Letter secondLetter) {
-        this.secondLetter = secondLetter;
-    }
-
-    public void setSubstring(String substring) {
-        this.substring = substring;
-    }
-
-    public String getSubstring() {
-        return substring;
-    }
-
-    public String getFilePathOfWordList() {
-        return filePathOfWordList;
-    }
-
-    public void setFilePathOfWordList(String filePathOfWordList) {
-        this.filePathOfWordList = filePathOfWordList;
-    }
-
-    public void setFirstLetter(Letter letter) {
-        this.firstLetter = letter;
-    }
-
-    public Letter getFirstLetter() {
-        return firstLetter;
-    }
-
-    public void setWordLength(int wordLength){
-        this.wordLength=wordLength;
-    }
-
-    public int getWordLength() {
-        return wordLength;
+    public void setParameters(UserParameters parameters) {
+        this.parameters = parameters;
     }
 
     public int getNumberOfOperation() {

@@ -10,15 +10,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TextParser {
-    private Text textToParse;
-
-    public TextParser() {
-        textToParse = new Text();
-    }
-
-    public TextParser(Text textToParse) {
-        this.textToParse = textToParse;
-    }
+//    private Text textToParse;
+//
+//    public TextParser() {
+//        textToParse = new Text();
+//    }
+//
+//    public TextParser(Text textToParse) {
+//        this.textToParse = textToParse;
+//    }
 
     public static List<TextPart> parseSentenceToWords(Sentence sentence, boolean ignorePunctuationMarks) {
         List<TextPart> words = new ArrayList<>();
@@ -57,11 +57,7 @@ public class TextParser {
         return letters;
     }
 
-    public Text getTextToParse() {
-        return textToParse;
-    }
-
-    public void parseToSentencesAndCodeBlocks() {
+    public static List<TextPart>  parseToSentencesAndCodeBlocks(Text textToParse) {
         String textContent = textToParse.getTextContent().replaceAll("\\r", "");
         List<TextPart> sentencesAndCodeBlocks = new ArrayList<>();
         Pattern sentencePattern = Pattern.compile(Regex.SENTENCE);
@@ -91,7 +87,28 @@ public class TextParser {
         if (startOfBlocks.size() == 1) {
             sentencesAndCodeBlocks.add(new CodeBlock(textContent.substring(startOfBlocks.get(0), endOfBlocks.get(0))));
         }
-        this.textToParse.setTextParts(sentencesAndCodeBlocks);
+       return sentencesAndCodeBlocks;
+    }
+    public static List<TextPart> parseToSentences(Text textToParse){
+        String textContent = textToParse.getTextContent().replaceAll("\\r", "");
+        List<TextPart> sentences = new ArrayList<>();
+        Pattern sentencePattern = Pattern.compile(Regex.SENTENCE);
+        Matcher sentenceMatcher = sentencePattern.matcher(textContent);
+        while (sentenceMatcher.find()) {
+            int start = sentenceMatcher.start();
+            int end = sentenceMatcher.end();
+            sentences.add(new Sentence(textContent.substring(start, end)));
+        }
+        return sentences;
+    }
+    public static List<TextPart> parseToWords(Text textToParse){
+        List<TextPart> sentences=parseToSentences(textToParse);
+        List<TextPart> wordsOfText=new ArrayList<>();
+        for(TextPart sentence:sentences){
+            List<TextPart> wordsOfSentence= TextParser.parseSentenceToWords((Sentence) sentence,true);
+            wordsOfText.addAll(wordsOfSentence);
+        }
+        return wordsOfText;
     }
 
 }

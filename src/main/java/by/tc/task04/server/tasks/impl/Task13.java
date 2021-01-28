@@ -2,23 +2,24 @@ package by.tc.task04.server.tasks.impl;
 
 import by.tc.task04.entity.TextPart;
 import by.tc.task04.entity.impl.Letter;
+import by.tc.task04.entity.impl.Text;
 import by.tc.task04.entity.impl.Word;
 import by.tc.task04.server.parser.TextParser;
 import by.tc.task04.server.tasks.IndividualTask;
 
 import java.util.List;
 
-public class Task13 implements IndividualTask {
-    private List<TextPart> words;
-    private Letter givenLetter;
+public class Task13 extends IndividualTask {
+    private final Letter givenLetter;
 
-    public Task13(List<TextPart> words, Letter givenLetter) {
-        this.words = words;
+    public Task13(Text text, Letter givenLetter) {
+        super(text);
         this.givenLetter = givenLetter;
     }
 
     @Override
     public String performTask() {
+        List<TextPart> words = TextParser.parseToWords(getText());
         StringBuilder sortedWords = new StringBuilder();
         words.sort((o1, o2) -> {
             List<Letter> lettersOfFirstWord = TextParser.parseWordToLetters((Word) o1);
