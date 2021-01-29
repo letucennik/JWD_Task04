@@ -1,0 +1,11 @@
+2021-01-29 17:48:45 FATAL TaskFactory:77 - src\main\resources\inpu.txt
+2021-01-29 17:48:45 INFO  ClientController:52 - Exception while receiving information from server
+2021-01-29 17:48:45 ERROR ClientController:53 - java.net.SocketException: Connection reset
+2021-01-29 17:50:06 FATAL TaskFactory:77 - File does not exist
+2021-01-29 17:50:06 INFO  ClientController:52 - Exception while receiving information from server
+2021-01-29 17:50:06 ERROR ClientController:53 - java.net.SocketException: Connection reset
+2021-01-29 17:53:22 INFO  ClientController:52 - Exception while receiving information from server
+2021-01-29 17:53:22 ERROR ClientController:53 - java.net.SocketException: Connection reset
+2021-01-29 17:54:47 ERROR TaskFactory:81 - Wrong number of operation
+2021-01-29 17:54:47 INFO  ClientController:52 - Exception while receiving information from server
+2021-01-29 17:54:47 ERROR ClientController:53 - java.net.SocketException: Connection reset

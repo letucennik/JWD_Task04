@@ -1,7 +1,7 @@
 package by.tc.task04.entity.impl;
 
 import by.tc.task04.entity.TextPart;
-import by.tc.task04.regex.Regex;
+import by.tc.task04.server.parser.TextParser;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -70,7 +70,7 @@ public class Sentence implements Serializable, TextPart {
 
     private List<TextPart> createListOfWordsFromString(String content) {
         List<TextPart> listOfWords = new ArrayList<>();
-        String[] arrayOfWords = content.split(Regex.SPLITTING_SENTENCE_INTO_WORDS);
+        String[] arrayOfWords = content.split(TextParser.SPLITTING_SENTENCE_INTO_WORDS);
         for (String s : arrayOfWords) {
             listOfWords.add(new Word(s));
         }

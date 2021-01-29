@@ -5,7 +5,6 @@ import by.tc.task04.entity.impl.Letter;
 import by.tc.task04.entity.impl.Sentence;
 import by.tc.task04.entity.impl.Text;
 import by.tc.task04.entity.impl.Word;
-import by.tc.task04.regex.Regex;
 import by.tc.task04.server.parser.TextParser;
 import by.tc.task04.server.tasks.IndividualTask;
 
@@ -24,7 +23,7 @@ public class Task15 extends IndividualTask {
             if (sentenceOrBlock instanceof Sentence) {
                 List<TextPart> sentenceWords = TextParser.parseSentenceToWords((Sentence) sentenceOrBlock, false);
                 for (TextPart word : sentenceWords) {
-                    if (!Regex.PUNCTUATION_MARKS.contains(word.getContent())) {
+                    if (!TextParser.PUNCTUATION_MARKS.contains(word.getContent())) {
                         List<Letter> letters = TextParser.parseWordToLetters((Word) word);
                         Letter firstLetter = letters.get(0);
                         ((Word) word).setWord(new StringBuilder(word.getContent().replaceAll(firstLetter.getContent(), "")).insert(0, firstLetter.getContent()).toString());

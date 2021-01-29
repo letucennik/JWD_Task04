@@ -1,7 +1,6 @@
 package by.tc.task04.entity.impl;
 
 import by.tc.task04.entity.TextPart;
-import by.tc.task04.regex.Regex;
 
 import java.io.Serializable;
 import java.util.ArrayList;

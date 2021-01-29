@@ -1,15 +1,12 @@
 package by.tc.task04.server.controller;
 
 import by.tc.task04.client.RequestToServer;
-import by.tc.task04.server.exception.PropertiesParameterException;
+import by.tc.task04.server.exception.AnswerToClientException;
+import by.tc.task04.server.exception.TaskException;
 import by.tc.task04.server.tasks.IndividualTask;
 import by.tc.task04.server.tasks.TaskFactory;
-import org.apache.log4j.Logger;
-
-import java.io.IOException;
 
 public class AnswerToClient {
-    private final Logger logger = Logger.getLogger(AnswerToClient.class);
     private RequestToServer clientRequest;
     private TaskFactory taskFactory;
 
@@ -22,11 +19,15 @@ public class AnswerToClient {
         this.clientRequest = clientRequest;
     }
 
-    public String preparedInfoForClient() throws PropertiesParameterException, IOException {
+    public String preparedInfoForClient() throws AnswerToClientException {
         taskFactory = new TaskFactory();
         IndividualTask userTask;
-        userTask = taskFactory.createTask(clientRequest);
-        return userTask.performTask();
+        try {
+            userTask = taskFactory.createTask(clientRequest);
+            return userTask.performTask();
+        } catch (TaskException e) {
+            throw new AnswerToClientException(e);
+        }
     }
 
 }
