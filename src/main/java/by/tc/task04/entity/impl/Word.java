@@ -3,26 +3,25 @@ package by.tc.task04.entity.impl;
 import by.tc.task04.entity.TextPart;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Word implements Serializable, TextPart {
     private String word;
-    public Word(){
-        word="";
+
+    public Word() {
+
+    }
+
+    public Word(String word) {
+        this.word = word;
+    }
+
+    public String getWord() {
+        return word;
     }
 
     public void setWord(String word) {
         this.word = word;
     }
-
-    public Word(String word){
-        this.word=word;
-    }
-    public String getWord(){
-        return word;
-    }
-
 
     @Override
     public String getContent() {
@@ -31,25 +30,24 @@ public class Word implements Serializable, TextPart {
 
     @Override
     public int hashCode() {
-        return (word==null)?0:word.hashCode();
+        return (word == null) ? 0 : word.hashCode();
     }
 
     @Override
     public boolean equals(Object obj) {
-        if(this==obj) {
+        if (this == obj) {
             return true;
         }
-        if(null==obj){
+        if (null == obj) {
             return false;
         }
-        if(this.getClass()!=obj.getClass()){
+        if (this.getClass() != obj.getClass()) {
             return false;
         }
-        Word w=(Word)obj;
-        if(null==this.word){
-            return null==w.word;
-        }
-        else if(!this.word.equalsIgnoreCase(w.word)){
+        Word w = (Word) obj;
+        if (null == this.word) {
+            return null == w.word;
+        } else if (!this.word.equalsIgnoreCase(w.word)) {
             return false;
         }
         return true;

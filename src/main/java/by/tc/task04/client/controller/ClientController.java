@@ -14,7 +14,8 @@ public class ClientController {
     private ObjectOutputStream clientOutputStream;
     private ObjectInputStream clientInputStream;
     private int port;
-    private Logger logger=Logger.getLogger(ClientController.class);
+    private Logger logger = Logger.getLogger(ClientController.class);
+
     public ClientController(RequestToServer requestToServer, int port) {
         this.port = port;
         this.requestToServer = requestToServer;
@@ -31,7 +32,7 @@ public class ClientController {
     }
 
     public void sendRequestToServer() {
-        if(clientOutputStream==null){
+        if (clientOutputStream == null) {
             return;
         }
         try {
@@ -43,7 +44,7 @@ public class ClientController {
     }
 
     public String getAnswerFromServer() {
-        if(clientInputStream==null){
+        if (clientInputStream == null) {
             return null;
         }
         try {

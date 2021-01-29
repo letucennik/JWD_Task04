@@ -22,10 +22,14 @@ public class TextParser {
         Pattern codeBlockPattern = Pattern.compile(CODE_BLOCK);
         Matcher sentenceMatcher = sentencePattern.matcher(textContent);
         Matcher codeBlockMatcher = codeBlockPattern.matcher(textContent);
-        TextHandler codeHandler=new TextHandler(textContent,codeBlockMatcher);
-        List<Integer> startOfBlocks = codeHandler.startIndicesOfMatches();
-        List<Integer> endOfBlocks = codeHandler.endIndicesOfMatches();
-
+        List<Integer> startOfBlocks = new ArrayList<>();
+        List<Integer> endOfBlocks = new ArrayList<>();
+        while (codeBlockMatcher.find()) {
+            int end = codeBlockMatcher.end();
+            int start = codeBlockMatcher.start();
+            endOfBlocks.add(end);
+            startOfBlocks.add(start);
+        }
         while (sentenceMatcher.find()) {
             int start = sentenceMatcher.start();
             int end = sentenceMatcher.end();

@@ -6,11 +6,12 @@ import java.io.Serializable;
 
 public class CodeBlock implements TextPart, Serializable {
     private String codeBlockContent;
-    public CodeBlock(){
-        codeBlockContent="";
+
+    public CodeBlock() {
     }
-    public CodeBlock(String codeBlockContent){
-        this.codeBlockContent=codeBlockContent;
+
+    public CodeBlock(String codeBlockContent) {
+        this.codeBlockContent = codeBlockContent;
     }
 
     public String getCodeBlockContent() {

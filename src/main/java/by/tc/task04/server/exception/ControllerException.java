@@ -1,16 +1,19 @@
 package by.tc.task04.server.exception;
 
 public class ControllerException extends Exception {
-    public ControllerException(){
+    public ControllerException() {
         super();
     }
-    public ControllerException(String message){
+
+    public ControllerException(String message) {
         super(message);
     }
-    public ControllerException(Exception e){
+
+    public ControllerException(Exception e) {
         super(e);
     }
-    public ControllerException(String message, Exception e){
-        super(message,e);
+
+    public ControllerException(String message, Exception e) {
+        super(message, e);
     }
 }

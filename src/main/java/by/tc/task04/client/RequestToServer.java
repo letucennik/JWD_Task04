@@ -1,6 +1,5 @@
 package by.tc.task04.client;
 
-import by.tc.task04.entity.impl.Letter;
 import by.tc.task04.entity.parameters.UserParameters;
 
 import java.io.Serializable;
@@ -11,11 +10,9 @@ public class RequestToServer implements Serializable {
     private String filePath;
     private UserParameters parameters;
 
-
-
     public RequestToServer() {
         filePath = "";
-        numberOfOperation=0;
+        numberOfOperation = 0;
     }
 
     public RequestToServer(String filePath, int numberOfOperation) {

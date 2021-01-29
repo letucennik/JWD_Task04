@@ -6,11 +6,14 @@ import java.io.Serializable;
 
 public class Letter implements Serializable, TextPart {
     private static final long serialVersionUID = 2L;
-    public static String VOWEL_LETTERS="AEIOUaeiou";
+    public static String VOWEL_LETTERS = "AEIOUaeiou";
     private char letter;
-    public Letter(){}
-    public Letter(char letter){
-        this.letter=letter;
+
+    public Letter() {
+    }
+
+    public Letter(char letter) {
+        this.letter = letter;
     }
 
     public char getLetter() {
@@ -21,11 +24,11 @@ public class Letter implements Serializable, TextPart {
         this.letter = letter;
     }
 
-    public boolean isVowel(){
+    public boolean isVowel() {
         return VOWEL_LETTERS.indexOf(letter) != -1;
     }
 
-    public Letter toLowerCase(){
+    public Letter toLowerCase() {
         return new Letter(Character.toLowerCase(this.letter));
     }
 
@@ -36,17 +39,17 @@ public class Letter implements Serializable, TextPart {
 
     @Override
     public boolean equals(Object obj) {
-        if(this==obj) {
+        if (this == obj) {
             return true;
         }
-        if(null==obj){
+        if (null == obj) {
             return false;
         }
-        if(this.getClass()!=obj.getClass()){
+        if (this.getClass() != obj.getClass()) {
             return false;
         }
-        Letter letter=(Letter)obj;
-        return this.letter==letter.letter;
+        Letter letter = (Letter) obj;
+        return this.letter == letter.letter;
     }
 
     @Override

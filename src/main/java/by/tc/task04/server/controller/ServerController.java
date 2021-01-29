@@ -3,7 +3,6 @@ package by.tc.task04.server.controller;
 import by.tc.task04.client.RequestToServer;
 import by.tc.task04.server.exception.AnswerToClientException;
 import by.tc.task04.server.exception.ControllerException;
-import by.tc.task04.server.exception.PropertiesParameterException;
 import by.tc.task04.server.parser.TextParser;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -24,7 +23,7 @@ public class ServerController {
     private final Socket connectedToClientSocket;
     private RequestToServer clientRequest;
     private AnswerToClient serverAnswer;
-    private Logger logger=Logger.getLogger(this.getClass());
+    private Logger logger = Logger.getLogger(this.getClass());
 
     public ServerController(int port) throws ControllerException {
         serverAnswer = new AnswerToClient();
@@ -34,9 +33,8 @@ public class ServerController {
             connectedToClientSocket = serverSocket.accept();
             serverInputStream = new ObjectInputStream(connectedToClientSocket.getInputStream());
             serverOutputStream = new ObjectOutputStream(connectedToClientSocket.getOutputStream());
-        }
-        catch(IOException e){
-            logger.log(Level.ERROR,e);
+        } catch (IOException e) {
+            logger.log(Level.ERROR, e);
             throw new ControllerException("Exception while connecting to client");
         }
     }
@@ -45,10 +43,9 @@ public class ServerController {
         try {
             clientRequest = (RequestToServer) serverInputStream.readObject();
             setProperties();
-        }
-        catch(IOException | ClassNotFoundException e){
-            logger.log(Level.ERROR,e);
-            throw new ControllerException("Exception while deserialization",e);
+        } catch (IOException | ClassNotFoundException e) {
+            logger.log(Level.ERROR, e);
+            throw new ControllerException("Exception while deserialization", e);
         }
 
     }
@@ -57,25 +54,22 @@ public class ServerController {
         serverAnswer = new AnswerToClient(clientRequest);
         try {
             serverAnswer.preparedInfoForClient();
-        }
-        catch(AnswerToClientException e){
+        } catch (AnswerToClientException e) {
             throw new ControllerException(e);
         }
         try {
             serverOutputStream.writeObject(serverAnswer.preparedInfoForClient());
             serverInputStream.close();
             serverOutputStream.close();
-        }
-        catch(AnswerToClientException e){
+        } catch (AnswerToClientException e) {
             throw new ControllerException(e);
-        }
-        catch(IOException e){
-            logger.log(Level.ERROR,"Exception while writing object to output stream");
+        } catch (IOException e) {
+            logger.log(Level.ERROR, "Exception while writing object to output stream");
         }
     }
 
     public void setProperties() {
-        ResourceBundle resourceBundle = ResourceBundle.getBundle("regex",new Locale("en"));
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("regex", new Locale("en"));
         TextParser.SPLITTING_SENTENCE_INTO_WORDS = resourceBundle.getString("regex.splittingSentenceIntoWords");
         TextParser.SPLITTING_SENTENCE_INTO_WORDS_IGNORE_PUNCTUATION = resourceBundle.getString("regex.splittingSentenceIntoWordsIgnorePunctuation");
         TextParser.SENTENCE = resourceBundle.getString("regex.sentence");

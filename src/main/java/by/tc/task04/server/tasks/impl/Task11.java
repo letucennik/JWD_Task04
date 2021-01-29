@@ -20,7 +20,7 @@ public class Task11 extends IndividualTask {
 
     @Override
     public String performTask() {
-        List<TextPart> sentencesAndBlocks= TextParser.parseToSentencesAndCodeBlocks(getText());
+        List<TextPart> sentencesAndBlocks= TextParser.parseToSentencesAndCodeBlocks(super.getText());
         StringBuilder resultString = new StringBuilder();
         StringBuilder modifiedSentence;
         Pattern neededSubstringPattern = Pattern.compile(SUBSTRING_BETWEEN_TWO_SYMBOLS);

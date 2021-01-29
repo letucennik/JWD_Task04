@@ -1,16 +1,19 @@
 package by.tc.task04.server.exception;
 
 public class TaskException extends Exception {
-    public TaskException(){
+    public TaskException() {
         super();
     }
-    public TaskException(String message){
+
+    public TaskException(String message) {
         super(message);
     }
-    public TaskException(Exception e){
+
+    public TaskException(Exception e) {
         super(e);
     }
-    public TaskException(String message, Exception e){
-        super(message,e);
+
+    public TaskException(String message, Exception e) {
+        super(message, e);
     }
 }
