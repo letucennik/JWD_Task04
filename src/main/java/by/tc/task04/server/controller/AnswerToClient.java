@@ -13,6 +13,7 @@ public class AnswerToClient {
     private RequestToServer clientRequest;
     private TaskFactory taskFactory;
 
+
     public AnswerToClient() {
         clientRequest = new RequestToServer();
     }

@@ -1,4 +1,0 @@
-SPLITTING_SENTENCE_INTO_WORDS=[\\s]+
-SPLITTING_SENTENCE_INTO_WORDS_IGNORE_PUNCTUATION=[\\s,?!.:-]+
-SENTENCE=([А-ЯA-Z]((т.п.|т.д.|пр.)|[^?!.\\{}(]|\\([^\\)]*\\))*[.?!])
-CODE_BLOCK=(```[a-z]*\\n[\\s\\S]*?\\n```)

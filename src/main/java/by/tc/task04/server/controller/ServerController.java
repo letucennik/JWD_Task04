@@ -1,20 +1,31 @@
 package by.tc.task04.server.controller;
 
 import by.tc.task04.client.RequestToServer;
-import by.tc.task04.regex.Regex;
 import by.tc.task04.server.exception.PropertiesParameterException;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class ServerController {
+    /**
+     * свойства по умолчанию
+     */
+    public static String SPLITTING_SENTENCE_INTO_WORDS = "[\\s]+";
+    public static String SPLITTING_SENTENCE_INTO_WORDS_IGNORE_PUNCTUATION = "[\\s,?!.:-]+";
+    public static String SENTENCE = "([А-ЯA-Z]((т.п.|т.д.|пр.)|[^?!.\\{}(]|\\([^\\)]*\\))*[.?!])";
+    public static String CODE_BLOCK = "(```[a-z]*\\n[\\s\\S]*?\\n```)";
+    public static String PUNCTUATION_MARKS = ",.?:-;";
+    private final ServerSocket serverSocket;
+    private final int port;
+    private final ObjectInputStream serverInputStream;
+    private final ObjectOutputStream serverOutputStream;
+    private final Socket connectedToClientSocket;
     private RequestToServer clientRequest;
-    private ServerSocket serverSocket;
-    private int port;
-    private ObjectInputStream serverInputStream;
-    private ObjectOutputStream serverOutputStream;
-    private Socket connectedToClientSocket;
     private AnswerToClient serverAnswer;
 
     public ServerController(int port) throws IOException {
@@ -28,7 +39,8 @@ public class ServerController {
 
     public void receiveRequestFromClient() throws IOException, ClassNotFoundException, PropertiesParameterException {
         clientRequest = (RequestToServer) serverInputStream.readObject();
-       // manageRegexFromProperties();
+        setProperties();
+
     }
 
     public void sendAnswerToClient() throws IOException, PropertiesParameterException {
@@ -39,30 +51,12 @@ public class ServerController {
         serverOutputStream.close();
     }
 
-//    private void manageRegexFromProperties() throws IOException, PropertiesParameterException {
-//        File propertiesFile = new File(clientRequest.getProperties());
-//        FileReader propertiesReader = new FileReader(propertiesFile);
-//        BufferedReader propertiesBufferedReader = new BufferedReader(propertiesReader);
-//        String currentLine = propertiesBufferedReader.readLine();
-//        while (currentLine != null) {
-//            String[] params = currentLine.split("=");
-//            switch (params[0]) {
-//                case "SPLITTING_SENTENCE_INTO_WORDS":
-//                    Regex.SPLITTING_SENTENCE_INTO_WORDS = params[1];
-//                    break;
-//                case "SPLITTING_SENTENCE_INTO_WORDS_IGNORE_PUNCTUATION":
-//                    Regex.SPLITTING_SENTENCE_INTO_WORDS_IGNORE_PUNCTUATION=params[1];
-//                    break;
-//                case "SENTENCE":
-//                    Regex.SENTENCE=params[1];
-//                    break;
-//                case "CODE_BLOCK":
-//                    Regex.CODE_BLOCK=params[1];
-//                    break;
-//                default:
-//                    throw new PropertiesParameterException("Invalid parameter in properties");
-//            }
-//
-//        }
-   // }
+    public void setProperties() {
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("regex",new Locale("en"));
+        SPLITTING_SENTENCE_INTO_WORDS = resourceBundle.getString("regex.splittingSentenceIntoWords");
+        SPLITTING_SENTENCE_INTO_WORDS_IGNORE_PUNCTUATION = resourceBundle.getString("regex.splittingSentenceIntoWordsIgnorePunctuation");
+        SENTENCE = resourceBundle.getString("regex.sentence");
+        CODE_BLOCK = resourceBundle.getString("regex.codeBlock");
+    }
+
 }

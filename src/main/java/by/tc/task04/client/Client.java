@@ -9,7 +9,7 @@ public class Client {
     public static final int port = 8001;
 
     public static void main(String[] args) {
-        RequestToServer request = new RequestToServer("src/main/resources/input.txt",2);
+        RequestToServer request = new RequestToServer("src/main/resources/input.txt",1);
         request.setParameters(UserParameters.newBuilder().setFirstLetter(new Letter('c')).setWordLength(5).build());
         ClientController clientController = new ClientController(request, port);
         clientController.sendRequestToServer();

@@ -23,7 +23,7 @@ public class Task02 extends IndividualTask {
             return wordsOfFirstSentence.size() - wordsOfSecondSentence.size();
         });
         for (TextPart sentence : sentences) {
-            sortedSentences.append(sentence.getContent()).append(" ");
+            sortedSentences.append(sentence.getContent()).append("\n");
         }
         return sortedSentences.toString();
     }
